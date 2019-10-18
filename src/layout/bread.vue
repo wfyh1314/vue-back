@@ -3,14 +3,6 @@
 	    <span @click="handleLefeMenu" class="bars"> 
 			<icon-svg icon-class="iconmenu-fold" :class="{isactive:changeBarDirection}" />
 		</span>
-        <el-breadcrumb class="breadcrumb" separator="/">
-            <el-breadcrumb-item 
-                v-for='(name,index) in matchedArr'
-				:key='index'
-				>
-				{{ $t(`commons.${name}`)}}
-			</el-breadcrumb-item>
-        </el-breadcrumb>
     </div>
 </template>
 
@@ -68,8 +60,9 @@ export default {
 	.bread_container{
 		background-color: #eaebec;
 		width: 100%;
+		height: 30px;
+		line-height: 30px;
 		.bars{
-			float: left;
             margin: 4px 10px;
 			cursor: pointer;
 			.isactive{
@@ -78,15 +71,6 @@ export default {
 				transition: .38s;
 				-webkit-transform-origin: 50% 50%;
 				transform-origin: 50% 50%;
-			}
-		}
-		.breadcrumb{
-			height: 30px;
-			line-height: 30px;
-			.breadbutton{
-				float:left;
-				margin:4px 5px 0 0;
-				
 			}
 		}
 	}

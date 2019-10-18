@@ -1,10 +1,11 @@
 <template>
    <div class="menu_left cflex" :style="{width:sidebar.width+'px'}">
-        <div class="menu_page_top rflex">
+        <!-- <div class="menu_page_top rflex">
             <img :class='["logo",{"closeLogo":!sidebar.opened}]' :src="logo" alt="Fang后台管理系统" >
             <span class='title' v-show="sidebar.opened">{{$t('commons.adminName')}}</span>
-        </div>
+        </div> -->
         <div class="menu_page_bottom is-scroll-left">
+            <bread></bread>
             <el-menu 
                 mode="vertical"
                 theme="dark" 
@@ -52,37 +53,40 @@
 import { mapGetters } from 'vuex'
 import * as mUtils from "@/utils/mUtils";
 import logoImg from "@/assets/img/logo.png";
-
+import Bread from './bread.vue';
 
 export default {
-  name: "left-Menu",
-  data() {
-    return {
-       menuObj:{
-         bgColor:'#fff',
-         textColor:'#666',
-         activeTextColor:'#ff6428',
-       },
-       logo:logoImg
-    };
-  },
-  computed:{
+    name: "left-Menu",
+    data() {
+        return {
+        menuObj:{
+            bgColor:'#fff',
+            textColor:'#666',
+            activeTextColor:'#ff6428',
+        },
+        logo:logoImg
+        };
+    },
+    computed:{
       ...mapGetters([
         'permission_routers',
         'isCollapse',
         'sidebar',
         'menuIndex'
       ]),
-  },
-  created(){
-  },
-  mounted(){
-  },
-  methods: {
-    getIindex(citem,item,cindex){
-      return (citem.meta.titleList)?item.path+'/'+citem.path+'/'+citem.meta.titleList[0].path:item.path+'/'+citem.path;
+    },
+    components:{    
+        Bread  
+    },
+    created(){
+    },
+    mounted(){
+    },
+    methods: {
+        getIindex(citem,item,cindex){
+            return (citem.meta.titleList)?item.path+'/'+citem.path+'/'+citem.meta.titleList[0].path:item.path+'/'+citem.path;
+        }
     }
-  }
 };
 </script>
 

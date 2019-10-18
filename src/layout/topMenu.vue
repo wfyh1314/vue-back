@@ -1,4 +1,3 @@
-
 <template>
     <div class="menu_top wflex rflex" ref="menuTop">
         <el-menu 
@@ -67,9 +66,14 @@
 
 <style lang="less" scoped>
     .menu_top{
+        background: #fff;
         .el-menu-demo{
             overflow-y:hidden;
             flex:1;
+        }
+        .el-menu-item {
+            height: 50px;
+            line-height: 50px;
         }
         .el-menu-item:focus, .el-menu-item:hover {
             outline: 0;

@@ -1,41 +1,43 @@
 <template>
-    <header class="head-nav rflex " :style="{'width':headNavWidth+'px'}" id='header_container'>
-        <div class="right-nav" ref="rightNav">
-            <top-menu></top-menu>
-            <div class="userinfo-right rflex">
-                <div class="userinfo">
-                    <el-menu 
-                       class="el-menu-demo" 
-                       mode="horizontal" 
-                       >
-                        <el-submenu index="1" popper-class="langItem">
-                            <template slot="title">
-                                <img :src="langLogo" class='langAvatar' alt="">
-                            </template>
-                            <el-menu-item index="1-1" @click="changeLocale('zh')">
-                                <img :src="chinaImg" class='langAvatar' alt="">
-                                <span class="intro">中文</span>
-                            </el-menu-item>
-                            <el-menu-item index="1-2" @click="changeLocale('en')">
-                                <img :src="americaImg" class='langAvatar' alt="">
-                                <span class="intro">EngList</span>
-                            </el-menu-item>
-                        </el-submenu>
+    <header class="head-nav rflex " id='header_container'>
+        <div class="menu_page_top rflex">
+            <img class='logo closeLogo' :src="logo" alt="Fang后台管理系统" >
+            <span class='title'>{{$t('commons.adminName')}}</span>
+        </div>
+        
+        <div class="userinfo-right rflex">
+            <div class="userinfo">
+                <el-menu 
+                    class="el-menu-demo" 
+                    mode="horizontal" 
+                    >
+                    <el-submenu index="1" popper-class="langItem">
+                        <template slot="title">
+                            <img :src="langLogo" class='langAvatar' alt="">
+                        </template>
+                        <el-menu-item index="1-1" @click="changeLocale('zh')">
+                            <img :src="chinaImg" class='langAvatar' alt="">
+                            <span class="intro">中文</span>
+                        </el-menu-item>
+                        <el-menu-item index="1-2" @click="changeLocale('en')">
+                            <img :src="americaImg" class='langAvatar' alt="">
+                            <span class="intro">EngList</span>
+                        </el-menu-item>
+                    </el-submenu>
 
-                        <el-submenu index="2"  popper-class="infoItem">
-                            <template slot="title">
-                                <div class='welcome'>
-                                    <span class="name">{{$t('commons.hi')}},</span>
-                                    <span class='name avatarname'> {{ $t(`commons.${name}`)}}</span>
-                                </div>
-                                <img :src="avatar" class='avatar' alt="">
-                            </template>
-                            <el-menu-item index="2-1" @click="setDialogInfo('info')">{{ $t('commons.infoShow') }}</el-menu-item>
-                            <el-menu-item index="2-2" @click="setDialogInfo('pass')">{{ $t('commons.infoModify') }}</el-menu-item>
-                            <el-menu-item index="2-3" @click="setDialogInfo('logout')">{{ $t('commons.quit') }}</el-menu-item>
-                        </el-submenu>
-                    </el-menu>
-                </div>
+                    <el-submenu index="2"  popper-class="infoItem">
+                        <template slot="title">
+                            <div class='welcome'>
+                                <span class="name">{{$t('commons.hi')}},</span>
+                                <span class='name avatarname'> {{ $t(`commons.${name}`)}}</span>
+                            </div>
+                            <img :src="avatar" class='avatar' alt="">
+                        </template>
+                        <el-menu-item index="2-1" @click="setDialogInfo('info')">{{ $t('commons.infoShow') }}</el-menu-item>
+                        <el-menu-item index="2-2" @click="setDialogInfo('pass')">{{ $t('commons.infoModify') }}</el-menu-item>
+                        <el-menu-item index="2-3" @click="setDialogInfo('logout')">{{ $t('commons.quit') }}</el-menu-item>
+                    </el-submenu>
+                </el-menu>
             </div>
         </div>
     </header>
@@ -46,7 +48,6 @@
     import * as mUtils from '@/utils/mUtils'
     import { setToken,getToken } from '@/utils/auth'
     import store from "@/store";
-    import topMenu from "./topMenu";
     import logoImg from "@/assets/img/logo.png";
     import chinaImg from "@/assets/img/china.svg";
     import americaImg from "@/assets/img/america.svg";
@@ -68,7 +69,6 @@
             }
           },
           components:{
-            topMenu
           },
           computed:{
             ...mapGetters(['name','avatar','sidebar']),
@@ -120,27 +120,46 @@
 </script>
 
 <style scoped lang='less'>
-    .right-nav{
-        display: flex;
-        flex: 1;
-        width:calc(100% - 180px);
-        padding-right: 15px;
-        justify-content: space-between;
-        box-shadow:0px 2px 5px 0px rgba(237,233,233,0.5);
-    }
     .head-nav {
         position: fixed;
         top: 0;
+        left: 0;
         right: 0;
         z-index: 29;
         transition: width .2s;
         justify-content: space-between;
         height: 60px;
         box-sizing: border-box;
-        background: #fff;
+        background: #333;
+        color: #fff;
         .logout {
             vertical-align: middle;
             cursor: pointer;
+        }
+    }
+    .menu_page_top{
+        height: 60px;
+        align-items: center;
+        justify-content: space-around;
+        text-transform: uppercase;
+        box-sizing: border-box;
+        padding: 0 10px;
+        .logo {
+            height: 36px;
+            width: 36px;
+            margin-right: 10px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .closeLogo{
+            width:30px;
+            height:30px;
+        }
+        .title{
+            font-size: 22px;
+            i{
+                color:#FF6C60;
+            }
         }
     }
     .middle{
@@ -151,6 +170,9 @@
         width: 160px;
         padding: 0 10px;
         justify-content: space-between;
+    }
+    .el-menu-demo {
+        background: #333;
     }
     .userinfo {
         line-height: 60px;
@@ -193,15 +215,6 @@
     .border{
         border:1px solid;
     }
-    // .notify-row{
-    //     line-height:60px;
-    //     flex:1;
-    //     ul{
-    //        display: flex;
-    //        justify-content: space-around;
-    //     }
-    // }
-   
     ul.top-menu > li {
         position: relative;
     }
