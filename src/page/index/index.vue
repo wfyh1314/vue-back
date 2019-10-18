@@ -214,7 +214,5 @@
 				justify-content: space-around;
 			}
 		}
-     
 	}
-  
 </style>

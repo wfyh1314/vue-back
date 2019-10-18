@@ -1,31 +1,13 @@
 <template>
   	<div class="shareContainer" ref="shareContainer">
 		<el-row :gutter="20">
-			<el-col :span="6">
+			<el-col :span="6" v-for="(item,index) in list" :key="index">
 			  <heng-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></heng-share>
-			</el-col>
-			<el-col :span="6">
-			   <invite-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></invite-share>
-			</el-col>
-			<el-col :span="6">
-			  <jianshu-share @shareToWeixin="shareToWeixin" @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></jianshu-share>
-			</el-col>
-			<el-col :span="6">
-			  <jianshu-left-share @shareToWeixin="shareToWeixin" @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></jianshu-left-share>
 			</el-col>
 		</el-row>
 		<el-row :gutter="20">
-			<el-col :span="6">
-		       <info-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></info-share>
-			</el-col>
-			<el-col :span="6">
-			  <juejin-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></juejin-share>
-			</el-col>
-			<el-col :span="6">
-		      <sina-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></sina-share>
-			</el-col>
-			<el-col :span="6">
-		      <yan-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></yan-share>
+			<el-col :span="6" v-for="(item,index) in list" :key="index">
+		       <heng-share @shareToQQ="shareToQQ" @shareToQQzone="shareToQQzone" @shareToWeibo="shareToWeibo" @shareToDouban="shareToDouban"></heng-share>
 			</el-col>
 		</el-row>
 		<wx-code-modal v-if="wxModal.show" :wxModal="wxModal" @hideWxCodeModal="hideWxCodeModal"></wx-code-modal>
@@ -35,20 +17,14 @@
 <script>
 	import {
 		HengShare,
-		InviteShare,
-		JianshuShare,
-		JianshuLeftShare,
-		WxCodeModal,
-		JuejinShare,
-		InfoShare,
-		SinaShare,
-		YanShare
+		WxCodeModal
 	} from "./components";
     import * as mutils from '@/utils/mUtils'
 
 	export default {
 	  data(){
 			return {
+				list: [1,2,3,4],
 				wxModal:{
 					show:false,
 					width:"358px",
@@ -58,14 +34,7 @@
 		},
 		components:{
 			HengShare,
-			InviteShare,
-			JianshuShare,
-			JianshuLeftShare,
-			WxCodeModal,
-			JuejinShare,
-			InfoShare,
-			SinaShare,
-			YanShare
+			WxCodeModal
 		},
 		mounted(){
 			mutils.setContentHeight(this,this.$refs.shareContainer,210);

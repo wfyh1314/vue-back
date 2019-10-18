@@ -98,16 +98,7 @@
                 </div>
                 </el-col>
         </el-row>
-        <!--广告信息栏-->
-        <el-row class="ban_row row" :gutter="10">
-            <el-col :span="24">
-                <ul class="banarea">
-                    <li v-for="(item,index) in bandata" :key="index">
-                        <a :href="item.url" target="_blank" :style="{backgroundPosition:0 +' -'+ item.data+'px'}"></a>
-                    </li>
-                </ul>
-            </el-col>
-        </el-row>
+        
         </div>
     </div>
 </template>
