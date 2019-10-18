@@ -3,7 +3,7 @@
         <head-nav></head-nav>
         <div class="menu_box wflex el-scrollbar" ref="menu_box" >
             <left-menu></left-menu>
-            <div class="menu_content" ref="menu_content" :style="{left:sidebar.width+'px'}">
+            <div class="menu_content" ref="menu_content" :style="{marginLeft:sidebar.width+'px'}">
                 <top-menu></top-menu>
                 <router-view></router-view><!--页面渲染入口-->
             </div>
@@ -54,12 +54,9 @@
             margin-top: 60px;
             background:#F6F7FC;
             .menu_content{
-                position: relative;
-                width: 100%;
                 background:#f0f2f5;
-                over-flow: auto;
+                overflow: auto;
             }
-
         }
     }
 </style>

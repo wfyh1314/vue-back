@@ -5,13 +5,6 @@
 			<span class="toTitle">分享到：</span>
 			<ul class="shareUl rflex wflex">
 				<li>
-					<div class="item" @mouseover="showqrcode()" @mouseout="hideqrcode()">
-						<icon-svg icon-class="iconwechat" />
-					</div>
-					<div class="qrcodeArea" v-show="qrcode.show">
-						<p class="saoTitle">扫一扫</p>
-						<div class="qrcode" id="qrCodeUrl"></div>
-					</div>
 				</li>
 				<li>
 					<div class="item" @click="shareToWeibo()">
